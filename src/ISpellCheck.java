@@ -1,3 +1,3 @@
 public interface ISpellCheck {
-    String checkSpells();
+    String checkSpells(String str);
 }

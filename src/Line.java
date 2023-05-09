@@ -3,9 +3,7 @@ import org.jetbrains.annotations.NotNull;
 public class Line implements IRandom {
     String word = "";
     int [] str = new int[4];
-    public Line() {
-
-    };
+    public Line() { };
 
     public void setStr(@NotNull String str) {
         String []temp = str.split("");
@@ -20,10 +18,6 @@ public class Line implements IRandom {
     @Override
     public String toString() {
         return this.word;
-    }
-
-    public void setWord(String word, int i) {
-        this.word = word;
     }
 
     public Line(String word) {

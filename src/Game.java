@@ -1,10 +1,7 @@
 import org.jetbrains.annotations.NotNull;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
-public class Game implements ISpellCheck, IWrite {
-    int cows = 0, bulls = 0;
+public class Game implements ISpellCheck {
+    private int cows = 0, bulls = 0;
     Game() { }
     public void compareStr(@NotNull Line comp, @NotNull Line player) {
         this.cows = 0;
@@ -28,33 +25,27 @@ public class Game implements ISpellCheck, IWrite {
             }
         }
     }
-    //доделать
-    public String checkSpells() {
-        String bull = "быка";
-        String cow = "коровы";
-        if (cows == 1)
-            return "корова";
-        else if (cows == 0)
-            return "коров";
-        else if (bulls == 1)
-            return "бык";
-        else if (bulls == 0)
-            return "быков";
-        return null;
+    public boolean checkRes() {
+        return this.bulls == 4 ? true : false;
     }
-    public void write(Line player) {
-        try {
-            FileWriter writer = new FileWriter("Result.txt", true);
-            writer.write("Запрос: " + player + " Ответ: " + this);
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public String checkSpells(String str) {
+        if (str == "коровы") {
+            if (cows == 1)
+                str = "корова";
+            else if (cows == 0)
+                str = "коров";
         }
+        else if (str == "быка") {
+            if (bulls == 1)
+                str = "бык";
+            else if (bulls == 0)
+                str = "быков";
+        }
+        return str;
     }
-
     @Override
     public String toString() {
-        return cows + " " + checkSpells() + " " +
-                bulls + " " + checkSpells() + "\n";
+        return cows + " " + checkSpells("коровы") + " " +
+                bulls + " " + checkSpells("быка") + "\n";
     }
 }
