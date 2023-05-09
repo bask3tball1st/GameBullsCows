@@ -49,7 +49,7 @@ public class Writer implements ISpellCheck {
     @Override
     public String checkSpells(String str) {
         if (count % 10 == 1 && count % 100 != 11)
-            str = "попытка.\n";
+            str = "попытку.\n";
         else if (count % 10 >= 2 && count % 10 <= 4
                 && (count % 100 < 12 || count % 100 > 14))
             str = "попытки.\n";
