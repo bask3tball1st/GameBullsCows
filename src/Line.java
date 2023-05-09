@@ -10,11 +10,6 @@ public class Line implements IRandom {
         for (int i = 0 ; i < 4; i++)
             this.str[i] = Integer.parseInt(temp[i]);
     }
-
-    public String getWord() {
-        return word;
-    }
-
     @Override
     public String toString() {
         return this.word;
