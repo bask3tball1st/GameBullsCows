@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -6,13 +7,20 @@ import java.util.Date;
 public class Writer implements ISpellCheck {
     private int count = 0;
     private String path = "";
-    private FileWriter writer;
+    private File file;
     Writer(String path) {
         this.path = path;
+        try {
+            file = new File("Result.txt");
+            if (file.createNewFile())
+                System.out.println("Файл создан!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void writeStart(int gameNumb, Line comp) {
         try {
-            writer = new FileWriter(path, true);
+            FileWriter writer = new FileWriter(path, true);
             Date curDate = new Date();
             SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             System.out.print("Game №" + gameNumb + " " + formatForDateNow.format(curDate));

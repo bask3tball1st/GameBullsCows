@@ -1,19 +1,26 @@
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Reader {
-    private int gameNumber;
+    private File file;
+    private int gameNumber = 0;
     private String path = "";
-    private FileReader reader;
     Reader(String path) {
         this.path = path;
+        try {
+            this.file = new File("Result.txt");
+            if (file.createNewFile())
+                System.out.println("Файл создан!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public int findNumb() {
         try {
-            reader = new FileReader(path);
+            FileReader reader = new FileReader(path);
             Scanner scan = new Scanner(reader);
             while (scan.hasNextLine()) {
                 if (scan.nextLine().contains("№"))

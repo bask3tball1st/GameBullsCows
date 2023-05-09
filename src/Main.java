@@ -14,21 +14,27 @@ public class Main {
                     int gameNumber = FileRd.findNumb() + 1;
                     Writer fileWr = new Writer("Result.txt");
                     Line comp = new Line();
+                    Line player;
                     comp.rand();
                     fileWr.writeStart(gameNumber, comp);
                     Scanner in = new Scanner(System.in);
                     Game game;
                     do {
                         game = new Game();
-                        Line player = new Line(in.next());
+                        do {
+                            player = new Line(in.next());
+                        } while (!player.correctInput());
                         game.compareStr(comp, player);
                         fileWr.writeGameStep(player, game);
                     } while (!game.checkRes());
                     fileWr.writeResult();
                     break;
-                default:
+                case 2:
                     flag = true;
                     System.out.println("Завершение программы!");
+                    break;
+                default:
+                    System.out.println("Ошибка ввода команды! Повторите попытку!");
                     break;
             }
         }

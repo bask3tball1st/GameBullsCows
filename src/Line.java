@@ -18,6 +18,13 @@ public class Line implements IRandom {
     public Line(String word) {
         this.word = word;
     }
+    public boolean correctInput() {
+        if (this.word.length() != 4) {
+            System.out.println("Ошибка! Введите строку из 4-х символов!");
+            return false;
+        }
+        else return true;
+    }
 
     public void rand() {
         for (int i = 0; i < 4; i++) {
