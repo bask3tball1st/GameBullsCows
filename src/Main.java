@@ -8,6 +8,7 @@ public class Main {
             printMenu();
             Scanner scan = new Scanner(System.in);
             int choice = scan.nextInt();
+            //TODO со свитч прикольно придумал
             switch (choice) {
                 case 1:
                     Reader FileRd = new Reader("Result.txt");

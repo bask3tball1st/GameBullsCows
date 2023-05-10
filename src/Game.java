@@ -1,9 +1,7 @@
-import org.jetbrains.annotations.NotNull;
-
 public class Game implements ISpellCheck {
     private int cows = 0, bulls = 0;
     Game() { }
-    public void compareStr(@NotNull Line comp, @NotNull Line player) {
+    public void compareStr(Line comp, Line player) {
         this.cows = 0;
         this.bulls = 0;
         comp.setStr(comp.word);
@@ -29,6 +27,7 @@ public class Game implements ISpellCheck {
         return this.bulls == 4 ? true : false;
     }
     public String checkSpells(String str) {
+        //TODO со строками никогда не используй == , используй equals
         if (str == "коровы") {
             if (cows == 1)
                 str = "корова";

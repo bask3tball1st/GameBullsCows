@@ -1,11 +1,9 @@
-import org.jetbrains.annotations.NotNull;
-
 public class Line implements IRandom {
     String word = "";
     int [] str = new int[4];
     public Line() { };
 
-    public void setStr(@NotNull String str) {
+    public void setStr(String str) {
         String []temp = str.split("");
         for (int i = 0 ; i < 4; i++)
             this.str[i] = Integer.parseInt(temp[i]);
@@ -26,6 +24,8 @@ public class Line implements IRandom {
         else return true;
     }
 
+    //TODO в загаданной строке не должно быть дублирующих символов
+    //TODO у тебя 9 никогда не попадет в загаданную строку. Подумай почему
     public void rand() {
         for (int i = 0; i < 4; i++) {
             int a = (int) (0 + Math.random() * 9);
