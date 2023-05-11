@@ -27,14 +27,14 @@ public class Game implements ISpellCheck {
         return this.bulls == 4 ? true : false;
     }
     public String checkSpells(String str) {
-        //TODO со строками никогда не используй == , используй equals
-        if (str == "коровы") {
+        //TODO со строками никогда не используй == , используй equals + (исправил)
+        if (str.equals("коровы")) {
             if (cows == 1)
                 str = "корова";
             else if (cows == 0)
                 str = "коров";
         }
-        else if (str == "быка") {
+        else if (str.equals("быка")) {
             if (bulls == 1)
                 str = "бык";
             else if (bulls == 0)

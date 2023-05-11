@@ -7,6 +7,7 @@ import java.util.Date;
 public class Writer implements ISpellCheck {
     private int count = 0;
     private String path = "";
+    private String result = "";
     private File file;
     Writer(String path) {
         this.path = path;
@@ -19,34 +20,23 @@ public class Writer implements ISpellCheck {
         }
     }
     public void writeStart(int gameNumb, Line comp) {
-        try {
-            FileWriter writer = new FileWriter(path, true);
-            Date curDate = new Date();
-            SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-            System.out.print("Game №" + gameNumb + " " + formatForDateNow.format(curDate));
-            System.out.println(" Загаданная строка " + comp);
-            writer.write("Game №" + gameNumb + " " + formatForDateNow.format(curDate));
-            writer.write(" Загаданная строка " + comp + "\n");
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Date curDate = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        System.out.print("Game №" + gameNumb + " " + formatForDateNow.format(curDate));
+        System.out.println(" Загаданная строка " + comp);
+        result += "Game №" + gameNumb + " " + formatForDateNow.format(curDate);
+        result += " Загаданная строка " + comp + "\n";
     }
     public void writeGameStep(Line player, Game game) {
-        try {
-            FileWriter writer = new FileWriter("Result.txt", true);
-            count++;
-            System.out.print("  Запрос: " + player + " Ответ: " + game);
-            writer.write("  Запрос: " + player + " Ответ: " + game);
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        count++;
+        System.out.print("  Запрос: " + player + " Ответ: " + game);
+        result += "  Запрос: " + player + " Ответ: " + game;
     }
     public void writeResult() {
         try {
             FileWriter writer = new FileWriter("Result.txt", true);
             System.out.print("  Строка была угадана за " + count + " " + checkSpells("попыток.\n"));
+            writer.write(result);
             writer.write("  Строка была угадана за " + count + " " + checkSpells("попыток.\n"));
             writer.close();
         } catch (IOException e) {

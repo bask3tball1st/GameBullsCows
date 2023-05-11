@@ -1,4 +1,4 @@
-public class Line implements IRandom {
+public class Line {
     String word = "";
     int [] str = new int[4];
     public Line() { };
@@ -24,12 +24,22 @@ public class Line implements IRandom {
         else return true;
     }
 
-    //TODO в загаданной строке не должно быть дублирующих символов
-    //TODO у тебя 9 никогда не попадет в загаданную строку. Подумай почему
+    //TODO в загаданной строке не должно быть дублирующих символов +(исправил)
+    //TODO у тебя 9 никогда не попадет в загаданную строку. Подумай почему +(понял почему! исправил)
     public void rand() {
-        for (int i = 0; i < 4; i++) {
-            int a = (int) (0 + Math.random() * 9);
-            word += Integer.toString(a);
+        while (word.length() != 4) {
+            int a = (int) (Math.random() * 10);
+            String [] str = word.split("");
+            boolean flag = false;
+            for (int i = 0; i < word.length(); i++) {
+                int temp = Integer.parseInt(str[i]);
+                if (temp == a) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag)
+                word += Integer.toString(a);
         }
     }
 }
